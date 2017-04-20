@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:padding="1dp"
+    android:background="#FFEB3B">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/fab_margin"
+        android:background="#FFF"
+        android:orientation="vertical"
+        tools:targetApi="lollipop">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:elevation="10dp"
+            android:text="@string/tituloApp"
+            tools:targetApi="lollipop" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/login"
+            android:layout_marginBottom="5dp"/>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutUser"
+            style="@style/textInputsLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Login">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/text_input_user"
+                style="@style/textInputsLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutPass"
+            style="@style/textInputsLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/text_input_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textInputsLogin"
+                android:inputType="textPassword"
+                app:passwordToggleEnabled="false" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/chkRecordar"
+            style="@style/textInputsLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recordar_contrase_a"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/login" />
+
+            <Button
+                android:id="@+id/btn_salir_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/salir" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

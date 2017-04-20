@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SecondActivityProjectNine</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="tituloApp">Sistema de control \n  de proyectos</string>
+    <string name="salir">Salir</string>
+    <string name="login">Login</string>
+    <string name="recordar_contrase_a">Recordar contraseña</string>
+    <string name="campoVacio">Este campo no puede estar vacio</string>
+</resources>
