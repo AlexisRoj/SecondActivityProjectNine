@@ -15,18 +15,16 @@ import android.widget.Toast;
 public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerLogin,
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    final String NOMBREPROVIDER = "com.innovagenesis.aplicaciones.android.examennueve" +
+    private final String NOMBREPROVIDER = "com.innovagenesis.aplicaciones.android.examennueve" +
             ".provider.ProvedorContenidosUsuarios";
 
-    CursorLoader cursorLoader;
-    public final String id_usuario = "id_usuario";
     public final String nom_usuario = "nom_usuario";
     public final String pass_usuario = "pass_usuario";
     public final String rol_user = "rol_user";
 
     private String compar_usuario;
     private String comparar_contrasena;
-    private String comparar_rol;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +60,15 @@ public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerL
         compar_usuario = usuario;
         comparar_contrasena = contrasena;
 
+        //Incia el loader del provider
         getSupportLoaderManager().initLoader(1, null, this);
     }
 
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        cursorLoader = new CursorLoader(this,
+        return new CursorLoader(this,
                 Uri.parse("content://" + NOMBREPROVIDER + "/cte"), null, null, null, null);
-        return cursorLoader;
     }
 
     @Override
@@ -87,9 +85,12 @@ public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerL
 
                 temp_user = data.getString(data.getColumnIndex(nom_usuario));
                 temp_pass = data.getString(data.getColumnIndex(pass_usuario));
+                temp_rol = data.getInt(data.getColumnIndex(rol_user));
 
-                if ((temp_user.equals(compar_usuario) ) && (temp_pass.equals(comparar_contrasena))) {
-                    mCargarActivity();
+                if ((temp_user.equals(compar_usuario) )
+                        && (temp_pass.equals(comparar_contrasena))
+                        && temp_rol == 3) {
+                    mCargarActivity(temp_user);
                 }
                 data.moveToNext();
             }
@@ -103,8 +104,9 @@ public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerL
 
     }
 
-    private void mCargarActivity() {
+    private void mCargarActivity(String usuario) {
         Intent intent = new Intent(Login.this, MainActivity.class);
+        intent.putExtra(nom_usuario,usuario);
         startActivity(intent);
         finish();
     }
