@@ -18,6 +18,8 @@ public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerL
     private final String NOMBREPROVIDER = "com.innovagenesis.aplicaciones.android.examennueve" +
             ".provider.ProvedorContenidosUsuarios";
 
+
+
     public final String nom_usuario = "nom_usuario";
     public final String pass_usuario = "pass_usuario";
     public final String rol_user = "rol_user";
@@ -33,7 +35,7 @@ public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerL
 
         DialogoLogin dialogoLogin = new DialogoLogin();
         dialogoLogin.setCancelable(false); // Evita que se cierre el dialogo
-        dialogoLogin.show(getSupportFragmentManager(), DialogoLogin.TAG);
+        dialogoLogin.show(getLoaderManager(), DialogoLogin.TAG);
 
         this.setTitle("Ingreso al sistema");
 

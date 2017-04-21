@@ -3,14 +3,9 @@ package com.innovagenesis.aplicaciones.android.secondactivityprojectnine;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -32,6 +27,9 @@ public class MainActivity extends AppCompatActivity
     public static final String estud_tarea = "estud_tarea";
     public static final String nota_tarea = "nota_tarea";
 
+
+
+    //URI TAREAS
     private final String NOMBREPROVIDER2 = "com.innovagenesis.aplicaciones.android.examennueve" +
             ".provider.ProveedorContenidosTareas";
 
@@ -53,7 +51,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getSupportLoaderManager().initLoader(1, null, MainActivity.this);
+        LoaderManager.enableDebugLogging(true);
+        getSupportLoaderManager().initLoader(2, null, MainActivity.this);
     }
 
     @Override
@@ -115,8 +114,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(MainActivity.this,
-                Uri.parse(URL), null, null, null, null);
+        return new CursorLoader(this,
+                Uri.parse("content://" + NOMBREPROVIDER2 + "/cte"), null, null, null, null);
     }
 
     @Override
