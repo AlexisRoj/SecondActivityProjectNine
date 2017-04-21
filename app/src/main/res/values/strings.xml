@@ -13,4 +13,5 @@
     <string name="campoVacio">Este campo no puede estar vacio</string>
     <string name="editar">editar</string>
     <string name="borrar">borrar</string>
+    <string name="listado">Listado de tareas</string>
 </resources>

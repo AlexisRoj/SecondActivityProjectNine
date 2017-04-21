@@ -75,13 +75,6 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <CheckBox
-            android:id="@+id/chkRecordar"
-            style="@style/textInputsLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/recordar_contrase_a"/>
-
 
         <LinearLayout
             android:layout_width="match_parent"

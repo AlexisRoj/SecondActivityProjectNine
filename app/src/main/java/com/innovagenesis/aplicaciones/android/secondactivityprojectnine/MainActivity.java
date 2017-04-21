@@ -11,6 +11,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,9 +33,8 @@ public class MainActivity extends AppCompatActivity
 
     //URI TAREAS
     private final String NOMBREPROVIDER2 = "com.innovagenesis.aplicaciones.android.examennueve" +
-            ".provider.ProveedorContenidosTareas";
+            ".provider.ProvedorContenidosTareas";
 
-    private final String URL = "content://" + NOMBREPROVIDER2 + "/cte";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity
 
         LoaderManager.enableDebugLogging(true);
         getSupportLoaderManager().initLoader(2, null, MainActivity.this);
+
+        this.setTitle(getString(R.string.listado));
     }
 
     @Override
@@ -80,8 +83,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.salir) {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -93,18 +96,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.salir) {
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -128,15 +121,21 @@ public class MainActivity extends AppCompatActivity
             data.moveToFirst();
 
             while (!data.isAfterLast()) {
-
                 Tareas tareas = new Tareas();
 
-                tareas.setNomTarea(data.getString(data.getColumnIndex(nom_tarea)));
-                tareas.setNomAsignaTarea(data.getString(data.getColumnIndex(asingna_tarea)));
-                tareas.setNomEstuTarea(data.getString(data.getColumnIndex(estud_tarea)));
-                tareas.setNotaTarea(data.getInt(data.getColumnIndex(nota_tarea)));
+                String nom_usuario = data.getString(data.getColumnIndex(estud_tarea));
+                String comp_usuario = getIntent().getExtras().getString(Login.nom_usuario);
 
-                arrayList.add(tareas);
+                if (nom_usuario.equals(comp_usuario)){
+
+                    tareas.setNomTarea(data.getString(data.getColumnIndex(nom_tarea)));
+                    tareas.setNomAsignaTarea(data.getString(data.getColumnIndex(asingna_tarea)));
+                    tareas.setNomEstuTarea(data.getString(data.getColumnIndex(estud_tarea)));
+                    tareas.setNotaTarea(data.getInt(data.getColumnIndex(nota_tarea)));
+
+                    arrayList.add(tareas);
+
+                }
 
                 data.moveToNext();
             }
@@ -144,8 +143,12 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "No se pudo recuperar datos", Toast.LENGTH_SHORT).show();
         }
 
-
-
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        RecyclerViewAdapterTarea adapter = new RecyclerViewAdapterTarea(arrayList,this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        adapter.notifyDataSetChanged();
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
     }
 
     @Override

@@ -28,8 +28,6 @@ public class DialogoLogin extends DialogFragment {
     private String nombreUsuario = "nombre_usuario";
     private String contrasenaUsuario = "contrasena_usuario";
 
-    private CheckBox checkBoxRecordar;
-
     public interface DatosHacerLogin {
         void HacerLogin(String usuario, String contrasena, Boolean recordar);
     }
@@ -55,7 +53,7 @@ public class DialogoLogin extends DialogFragment {
 
         txtUsuario = (TextInputEditText) view.findViewById(R.id.text_input_user);
         txtPass = (TextInputEditText) view.findViewById(R.id.text_input_pass);
-        checkBoxRecordar = (CheckBox) view.findViewById(R.id.chkRecordar);
+
 
         Button btnLogin = (Button) view.findViewById(R.id.btn_login);
         Button btnSalirogin = (Button) view.findViewById(R.id.btn_salir_login);
@@ -66,9 +64,6 @@ public class DialogoLogin extends DialogFragment {
 
                 Boolean recordarLogin = false; //Valida que este marcado el check
                 Boolean enviarInterface = true; //Activa la interface
-
-                if (checkBoxRecordar.isChecked())
-                    recordarLogin = true;
 
                 /* Validacion de los text inputs*/
                 String errorUsuario = "";

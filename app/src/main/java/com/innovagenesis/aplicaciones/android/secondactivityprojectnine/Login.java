@@ -20,7 +20,7 @@ public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerL
 
 
 
-    public final String nom_usuario = "nom_usuario";
+    public static final String nom_usuario = "nom_usuario";
     public final String pass_usuario = "pass_usuario";
     public final String rol_user = "rol_user";
 
@@ -34,8 +34,9 @@ public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerL
         setContentView(R.layout.activity_login);
 
         DialogoLogin dialogoLogin = new DialogoLogin();
+        dialogoLogin.show(getSupportFragmentManager(), DialogoLogin.TAG);
         dialogoLogin.setCancelable(false); // Evita que se cierre el dialogo
-        dialogoLogin.show(getLoaderManager(), DialogoLogin.TAG);
+
 
         this.setTitle("Ingreso al sistema");
 
@@ -106,6 +107,9 @@ public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerL
 
     }
 
+    /**
+     * Método encargado de realizar la carga del main
+     * */
     private void mCargarActivity(String usuario) {
         Intent intent = new Intent(Login.this, MainActivity.class);
         intent.putExtra(nom_usuario,usuario);
