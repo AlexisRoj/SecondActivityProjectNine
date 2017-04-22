@@ -15,10 +15,6 @@ import android.widget.Toast;
 public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerLogin,
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    private final String NOMBREPROVIDER = "com.innovagenesis.aplicaciones.android.examennueve" +
-            ".provider.ProvedorContenidosUsuarios";
-
-
 
     public static final String nom_usuario = "nom_usuario";
     public final String pass_usuario = "pass_usuario";
@@ -70,10 +66,14 @@ public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerL
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        String NOMBREPROVIDER = "com.innovagenesis.aplicaciones.android.examennueve" +
+                ".provider.ProvedorContenidosUsuarios";
         return new CursorLoader(this,
                 Uri.parse("content://" + NOMBREPROVIDER + "/cte"), null, null, null, null);
     }
 
+    /** Carga el cursor y valida que los elementos listados sean deacuerdo
+     * al usurio ingresado*/
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 
@@ -90,6 +90,7 @@ public class Login extends AppCompatActivity implements DialogoLogin.DatosHacerL
                 temp_pass = data.getString(data.getColumnIndex(pass_usuario));
                 temp_rol = data.getInt(data.getColumnIndex(rol_user));
 
+                /** Compara la activity y envia el usuario que va a ser listado*/
                 if ((temp_user.equals(compar_usuario) )
                         && (temp_pass.equals(comparar_contrasena))
                         && temp_rol == 3) {
